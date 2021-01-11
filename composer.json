@@ -1,5 +1,5 @@
 {
-  "name": "uifeedback/graph-teams-sdk",
+  "name": "thesoftwarefarm/graph-teams-sdk",
   "type": "library",
   "description": "The Microsoft Teams SDK for PHP",
   "keywords": [
