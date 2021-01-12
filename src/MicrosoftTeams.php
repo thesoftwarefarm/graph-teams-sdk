@@ -250,6 +250,49 @@ class MicrosoftTeams
     }
 
     /**
+     * Gets the events list
+     *
+     * https://docs.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0&tabs=http
+     * 
+     * @param string $userPrincipalName Most often the user's email
+     * @return Response
+     */
+    public function getEvents(string $userPrincipalName): Response
+    {
+        $request = new Request(
+            'get',
+            "users/$userPrincipalName/calendar/events",
+            [],
+            $this->authToken,
+            $this->endPointBaseUrl()
+        );
+
+        return $this->getResponse($request);
+    }
+
+    /**
+     * Creates an event
+     *
+     * https://docs.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0&tabs=http
+     * 
+     * @param string $userPrincipalName Most often the user's email
+     * @param string $eventId
+     * @return Response
+     */
+    public function deleteEvent(string $userPrincipalName, string $eventId): Response
+    {
+        $request = new Request(
+            'delete',
+            "users/$userPrincipalName/calendar/events/$eventId",
+            [],
+            $this->authToken,
+            $this->endPointBaseUrl()
+        );
+
+        return $this->getResponse($request);
+    }
+
+    /**
      * @param Request $request
      * @return Response
      */
