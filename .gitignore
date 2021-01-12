@@ -5,3 +5,4 @@ composer.lock
 /.php_cs
 /_ide_helper.php
 .phpunit.result.cache
+phpcs.xml

@@ -166,6 +166,8 @@ class MicrosoftTeams
     /**
      * Returns an object with user details
      *
+     * https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http
+     * 
      * @param string $userPrincipalName Most often the user's email
      * @return Response
      */
@@ -183,8 +185,53 @@ class MicrosoftTeams
     }
 
     /**
-     * Creates an even
+     * Returns an object with the licenses of an user
      *
+     * https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http
+     * 
+     * @param string $userPrincipalName Most often the user's email
+     * @return Response
+     */
+    public function getUserLicenses(string $userPrincipalName): Response
+    {
+        $request = new Request(
+            'get',
+            "users/$userPrincipalName/licenseDetails",
+            [],
+            $this->authToken,
+            $this->endPointBaseUrl()
+        );
+
+        return $this->getResponse($request);
+    }
+
+    /**
+     * Assign licenses to an user
+     *
+     * https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http
+     * 
+     * @param string $userPrincipalName Most often the user's email
+     * @param array $body
+     * @return Response
+     */
+    public function assignLicenseToUser(string $userPrincipalName, array $body): Response
+    {
+        $request = new Request(
+            'post',
+            "users/$userPrincipalName/assignLicense",
+            $body,
+            $this->authToken,
+            $this->endPointBaseUrl()
+        );
+
+        return $this->getResponse($request);
+    }
+
+    /**
+     * Creates an event
+     *
+     * https://docs.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0&tabs=http
+     * 
      * @param string $userPrincipalName Most often the user's email
      * @param array $body
      * @return Response
