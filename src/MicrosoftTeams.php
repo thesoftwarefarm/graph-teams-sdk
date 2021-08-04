@@ -133,7 +133,7 @@ class MicrosoftTeams
     {
         $request = new Request(
             'get',
-            'users',
+            'users?$top=999',
             [],
             $this->authToken,
             $this->endPointBaseUrl()
